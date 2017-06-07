@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>构造函数</title>
+</head>
+<body>
+    
+</body>
+<script type="text/javascript">
+    
+    function Person(name, sex, age) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.sayName = function() {
+            console.log(this.name);
+        }
+    }
+
+    var p1 = new Person('zhangshan', '男' , 23);
+    var p2 = new Person('李四', '女' , 13);
+
+    console.log(p1.name);
+    p1.sayName();
+ 
+    console.log(p1 == p2)  // false
+    console.log(p1.sayName == p2.sayName) // false
+
+    console.log(p1.constructor == Person) // true
+    console.log(p1 instanceof Person)  // 判断是否是实例  true
+
+    var obj = new Object();
+    // call就是把前面的方法中this指向后面的对象
+    Person.call(obj,'dawang', '男', 24)
+    console.log(obj.name)
+
+
+    // 构造函数的弊端，每次new person都创建了新的属性和函数，且互不相等
+
+    function Person(name, sex, age) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.sayName = SayName;
+    }
+
+    function SayName(){
+        alert(this.name)
+    }
+
+    // 这样才相等
+
+
+    // 比较好的方法是用原型对象 prototype
+    Person.prototype = {
+
+    }
+
+
+
+    function Person() {}
+    Person.prototype.name = 'yang';
+    var p1 = new Person();
+    var protoObj = Object.getPrototypeOf(p1);
+    console.log(Person.prototype == protoObj)  // true
+</script>
+</html>

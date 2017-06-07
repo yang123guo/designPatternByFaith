@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script type="text/javascript">
+    
+    function Person() {
+
+    }
+
+    Person.prototype = {
+        constructor : Person,
+        name : 'yang'
+    }
+
+    var p1 = new Person();
+
+    for (attr in p1){
+        console.log(attr)
+    }
+    // constructor  name 
+    // 弊端是：导致了constructor可以枚举了
+
+
+    // 加上下面的方法就不能枚举
+    Object.defineProperty(Person.prototype , 'constructor', {
+        enumerable : false,
+        value : Person
+    })
+ 
+    for (attr in p1){
+        console.log(attr)
+    }
+</script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    
+</body>
+<script type="text/javascript">
+    // 注意下面先new实例会出现分歧
+
+    function Person () {
+
+    }
+
+    var p1 = new Person();
+
+    Person.prototype.say = function () {
+        alert('这种方式可以')
+    }
+    Person.prototype.constructor = Person;
+
+    p1.say();
+
+    // 以上给Person.prototype添加属性的方式没关系
+
+    // 但是下面整个赋值的方法是不可以的
+
+    function Person (){}
+    var p2 = new Person();
+    Person.prototype = {
+        constructor : Person,
+        say : function(){
+            alert('这种方式不可以')
+        }
+    }
+
+    p2.say();
+
+    // 后new是可以的
+    var p3 = new Person();
+    p3.say();
+</script>
+</html>
