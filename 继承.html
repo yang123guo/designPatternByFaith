@@ -7,4 +7,102 @@
 <body>
     
 </body>
+<script type="text/javascript">
+    
+    // 构造函数 原型对象  实例对象
+    /*
+        1、构造函数.prototype = 原型对象
+        2、原型对象.constructor = 构造函数
+        3、原型对象.isPrototypeOf(实例对象)
+        4、new 构造函数 = 实例对象
+    */
+
+
+    // 父类构造函数 sup
+    function Sup(name) {
+        this.name = name;
+    }
+
+    Sup.prototype = {
+        constructor : Sup,
+        sayName : function(){
+            console.log(this.name)
+        }
+    }
+
+    function Sub(age) {
+        this.age = age;
+    }
+
+    // 让子类的原型对象 指向 父类的实例  ---- 继承
+    Sub.prototype = new Sup('zhangsan');
+    console.log(Sub.prototype.constructor)
+
+    /*
+        function Sup(name) {
+            this.name = name;
+        }
+    */
+
+
+    var p1 = new Sub(12);
+    console.log(p1)
+    p1.sayName();
+
+
+    // 以上代码 看传入参数 38行 48行都有，不好看 
+    // 比较好用的是给48行统一传入参数 用call和apply借用
+
+
+
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    Person.prototype.id = 19;
+
+    function Boy(name, age, sex){
+        this.sex = sex;
+        // 重点
+        Person.call(this, name, age)
+    }
+
+    var qiang = new Boy('yang', 24, '男')
+    console.dir(qiang)
+    // 以上为类继承 缺点是：只能继承Person类模板，但是Person.prototype原型对象不能继承
+
+
+
+
+    //  完整的组合继承（原型继承和构造函数组合继承）
+    //  缺点是：继承了两次父类模板
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    Person.prototype.id = 19;
+    Person.prototype.sayName = function(){
+        console.log(this.name)
+    }
+
+    function Boy(name, age, sex){
+        this.sex = sex;
+        // 重点 继承父类的模板
+        Person.call(this, name, age)
+    }
+
+    // 继承父类的原型对象 同时又继承了父类模板
+    Boy.prototype = new Person()
+
+    var qiang = new Boy('yang', 24, '男')
+    console.log(qiang) 
+    console.log(qiang.id)
+    qiang.sayName();
+
+
+    
+
+</script>
 </html>

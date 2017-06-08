@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>终极继承</title>
+</head>
+<body>
+    
+</body>
+<script type="text/javascript">
+    
+
+    function extend(sub, sup) {
+        // 目的：实现的效果只继承父类的原型对象
+        // 因为之前会两次继承构造模板，显得冗余
+
+        var F = new Function(); // 创建一个空的函数，用于中间转换
+        F.prototype = sup.prototype; // 这里开始转换了，把父类的原型对象赋给中间类 拷贝了份引用
+        sub.prototype = new F(); // 转换的另一步，子类继承的是中间类
+        sub.prototype.constructor = sub; // 再把子类指回去
+
+        // 解耦的做法：再次把父类的原型保存赋值，这样可以用来解耦
+        sub.superClass = sup.prototype;
+        // 加保险，为了防止父类的prototype中忘记写constructor属性
+        if(sup.prototype.constructor == Object.prototype.constructor){
+            sup.prototype.constructor = sup;
+        }
+    }
+
+
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    Person.prototype = {
+        constructor : Person,
+        sayName : function() {
+            console.log(this.name);
+        }
+    }
+
+    function Boy(name, age, sex) {
+        this.sex = sex; // 自己的属性
+        // call绑定父类模板 只复制父类模板 借用了构造函数
+        Boy.superClass.constructor.call(this, name, age);
+    }
+
+    // 只继承一遍父类的原型对象
+    extend(Boy, Person);
+
+    Boy.prototype.sayName = function() {
+        console.log('hah ')
+    }
+
+    var p1 = new Boy('yang' , 13, '男')
+
+    // 这里Boy.superClass就可以看成Person.prototype了
+    Boy.superClass.sayName.call(p1)
+</script>
+</html>
