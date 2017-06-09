@@ -4,10 +4,24 @@
         // 这是模拟的构造函数，内部为_$函数的实现
     }
 
+    // 构造函数原型上添加方法和属性
+    _$.prototype = {
+        constructor : _$,
+        addEvent : function(){
+            // 逻辑代码
+            
+            return this;
+        },
+        setStyle : function(){
+            // 逻辑代码
+            return this;
+        }
+    }
+
     // 把_$赋值给window,这样外部就可以在外部访问到
     window.$ = _$;
 
-    $.onReady = function(fn){
+    _$.onReady = function(fn){
         // 实例化出来_$对象 真正的注册到window上
         window.$ = function() {
             return new _$(args)
@@ -15,6 +29,13 @@
 
         // 给onReady传入函数，且调用函数
         fn && fn();
+
+        // 实现链式编程
+        _$.method('addEvent', function(){
+
+        }).method('setStyle', function(){
+
+        })
     }
 
 })(window, undefined)
