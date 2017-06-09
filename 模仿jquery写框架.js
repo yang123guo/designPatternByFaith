@@ -4,16 +4,22 @@
         // 这是模拟的构造函数，内部为_$函数的实现
     }
 
+    Function.prototype.method = function(){
+        
+    }
+
+
     // 构造函数原型上添加方法和属性
     _$.prototype = {
         constructor : _$,
         addEvent : function(){
             // 逻辑代码
-            
+            alert('event');
             return this;
         },
         setStyle : function(){
             // 逻辑代码
+            alert('setStyle')
             return this;
         }
     }
