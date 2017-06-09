@@ -11,7 +11,7 @@
     }
 
 
-    // 构造函数原型上添加方法和属性
+    // 构造函数原型上添加方法和属性  
     _$.prototype = {
         constructor : _$,
         addEvent : function(){
