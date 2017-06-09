@@ -8,6 +8,12 @@
     window.$ = _$;
 
     $.onReady = function(fn){
+        // 实例化出来_$对象 真正的注册到window上
+        window.$ = function() {
+            return new _$(args)
+        }
+
+        // 给onReady传入函数，且调用函数
         fn && fn();
     }
 
