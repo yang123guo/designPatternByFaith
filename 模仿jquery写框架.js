@@ -4,8 +4,10 @@
         // 这是模拟的构造函数，内部为_$函数的实现
     }
 
-    Function.prototype.method = function(){
-        
+    // Function类上扩展一个可以实现链式编程的方法
+    Function.prototype.method = function(methodName, fn){
+        this.prototype.[methodName] = fn;
+        return this;
     }
 
 
