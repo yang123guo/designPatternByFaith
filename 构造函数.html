@@ -54,15 +54,25 @@
 
     // 比较好的方法是用原型对象 prototype
     Person.prototype = {
+        sayHello : function(){
 
+        }
     }
 
 
 
     function Person() {}
-    Person.prototype.name = 'yang';
+    //Person.prototype.name = 'yang';
+    Person.prototype = {
+        sayHello : function(){
+
+        }
+    }
     var p1 = new Person();
+    var p2 = new Person();
     var protoObj = Object.getPrototypeOf(p1);
     console.log(Person.prototype == protoObj)  // true
+    console.log(p1.sayHello == p2.sayHello)  // true
+    // 可见构造函数不共用属性和方法，但是原型对象共有属性和方法
 </script>
 </html>
