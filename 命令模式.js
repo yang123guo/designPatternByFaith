@@ -10,3 +10,6 @@ function makeStop() {
         obj.stop();
     }
 }
+
+var startCommand = new MakeStart(obj);
+startCommand();
