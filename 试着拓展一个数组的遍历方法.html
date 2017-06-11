@@ -20,8 +20,11 @@
 				// 循环遍历数组的每一项
 				while(this.i < this.length){
 					var e = this[this.i]; // 获取数组的每一项
-					if(e && e.constructor == Array){
-						e.each(fn)
+					if(e && e.constructor == Array){ // 如果当前元素获得了 且元素是一个数组
+						e.each(fn); // 直接做递归操作
+					}else{
+						// 如果不是数组 那么就是一个单个元素  把元素传递给fn，并让函数执行
+						fn.call(e,e)  // fn.apply(e,[e]) e可以是任何new的一个东西，目的让其执行就好，表示window就可以了
 					}
 				}
 			}
