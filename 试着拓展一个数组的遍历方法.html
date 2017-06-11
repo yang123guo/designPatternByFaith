@@ -8,8 +8,17 @@
     
 </body>
 <script type="text/javascript">
-    Array.prototype.each = function() {
-		
+    Array.prototype.each = function(fn) {
+		// 先写一个try catch语句 解决错误情况
+		try{
+			// 1、目的： 遍历数组的每一项 
+			// 计数器 记录当前遍历的元素位置
+			this.i || (this.i = 0)
+			// 2、判断什么时候去执行each的核心方法
+			// 当数组的长度大于0的时候 且 传递的参数必须为函数的时候
+			if(this.length > 0 && fn.constructor == Function){
+			}
+		}
 	}
    
 </script>
