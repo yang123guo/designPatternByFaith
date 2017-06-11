@@ -24,11 +24,17 @@
 						e.each(fn); // 直接做递归操作
 					}else{
 						// 如果不是数组 那么就是一个单个元素  把元素传递给fn，并让函数执行
-						fn.call(e,e)  // fn.apply(e,[e]) e可以是任何new的一个东西，目的让其执行就好，表示window就可以了
+						fn.call(e,e)  // fn.apply(e,[e]) 
+						// e可以是任何new的一个东西，目的让其执行就好，表示window就可以了						
 					}
+					this.i ++;
 				}
+				this.i = null; // 释放内存 垃圾回收
 			}
+		}catch{
+			// do something
 		}
+		return this;
 	}
    
 </script>
