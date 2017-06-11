@@ -17,6 +17,13 @@
 			// 2、判断什么时候去执行each的核心方法
 			// 当数组的长度大于0的时候 且 传递的参数必须为函数的时候
 			if(this.length > 0 && fn.constructor == Function){
+				// 循环遍历数组的每一项
+				while(this.i < this.length){
+					var e = this[this.i]; // 获取数组的每一项
+					if(e && e.constructor == Array){
+						e.each(fn)
+					}
+				}
 			}
 		}
 	}
