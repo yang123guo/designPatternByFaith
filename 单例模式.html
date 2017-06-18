@@ -90,6 +90,62 @@ var xiaoli = {
 }
 
 xiaoli.callXiaoming('didi')
+
+
+
+
+// 实际应用：
+
+var A = {
+	a : 0,
+	init : function() {
+		this.render();		
+		this.bind();
+	},
+	render : function() {
+		// 渲染节点
+		var _this = this;
+		_this.btnA = $('#a');
+	},
+	bind : function() {
+		var _this = this;
+		this.btnA.click(function(){
+			_this.test();
+		})
+
+	},
+	test : function () {
+		a = 5;
+	}
+}
+
+var B = {
+	a : 0,
+	init : function() {
+		this.render();		
+		this.bind();
+	},
+	render : function() {
+		// 渲染节点
+		var _this = this;
+		_this.btnB = $('#a');
+	},
+	bind : function() {
+		var _this = this;
+		this.btnB.click(function(){
+			_this.test();
+		})
+
+	},
+	test : function () {
+		// 两个命名空间之间的交互
+		A.a = 5;
+	}
+}
+
+A.init();
+B.init();
+
 		</script>
 	</head>
 	<body>
