@@ -39,6 +39,9 @@
     // 构造函数的弊端，每次new person都创建了新的属性和函数，且互不相等
 
     function Person(name, sex, age) {
+        if(!(this instanceof Person){
+            return new Person(name, sex, age)
+        }
         this.name = name;
         this.age = age;
         this.sex = sex;
