@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>module模式</title>
+		<script>
+		
+//		module模式
+//			var myModule=(function(){
+//				var my={},publicName="faith",privateName="yang";
+//				
+//				function privateFun(i){
+//					alert(i);
+//				}
+//				
+//				my.name=publicName;
+//				my.publicFun=function(data){
+//					privateFun(data);
+//				};
+//				return my;				
+//			})();
+//				
+//			alert(myModule.name);
+//			myModule.publicFun("guoqiang");
+//			
+			
+
+//		module模式之放大模式
+			var myModule=(function(my){
+//				私有的，给公有的来调用所用
+				var publicName="faith",privateName="yang";
+				
+				function privateFun(i){
+					alert(i);
+				}
+//				共有的，待暴露出去的
+				my.name=publicName;
+				my.publicFun=function(data){
+					privateFun(data);
+				};
+				return my;				
+			})(myModule || {});
+//			调用	
+			alert(myModule.name);
+			myModule.publicFun("guoqiang");
+		
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

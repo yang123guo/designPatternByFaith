@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+//		最简单的字面量定义的属性和方法
+			var my={
+				one:"faith",
+				two:"yang",
+				method:function(){
+					alert();
+				}
+			}
+			
+			my.method();
+
+
+		// 简单版单例模式
+		var Fun=function(){
+			var name="yang",age=28,sex="male";
+			function priveteFun(){
+				alert();
+			}
+			
+			return {
+				publicFun:function(){
+					priveteFun();
+				},
+				publicObj:name
+			}
+		}
+			Fun().publicFun();
+			alert(Fun().publicObj);
+
+
+//      写Fun()不友好，容易丢掉(),改造下
+		var Fun = (function(){
+			var name="yang",
+				age=28,
+				sex="male";
+			function priveteFun(){
+				alert();
+			}
+			
+			return {
+				publicFun:function(){
+					priveteFun();
+				},
+				publicObj:name
+			}
+		}());
+			Fun.publicFun();
+			alert(Fun.publicObj);
+			
+
+//目的： 保护自己的属性和方法
+
+
+// 1、独立的对象 
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
