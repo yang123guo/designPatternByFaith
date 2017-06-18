@@ -57,8 +57,39 @@
 //目的： 保护自己的属性和方法
 
 
-// 1、独立的对象 
-			
+// 1、独立的对象 建2个 一个xiaowang 一个xiaoli
+// 2、让xiaowang和xiaoli通过门铃进行通信
+// 3、先看xiaowang叫有没有门， 有门的话直接通过门铃通讯didi 没门就先建门
+// 4、xiaowang和xiaoli两个单例通信 注意内存的释放
+var xiaowang = (function(){
+	var men;
+	var xiaowangMen = function(msg) {
+		// 因为new这里用this；
+		this.menling = msg;
+	};
+	var info = {
+		sendMessage : function(msg) {
+			// 没有men先建men,有men就return
+			if(!men){
+				var men = new xiaowangMen(msg)
+			}
+			return men;
+		}
+	}
+
+	return info;
+})();
+// 调用：xiaowang.sendMessage('xxx')
+
+var xiaoli = {
+	callXiaoming : function(msg){
+		var _xw = xiaowang.sendMessage(msg);
+		console.log(_xw.menling);
+		_xw = null; // 不用以后垃圾回收，上面立即执行函数不必
+	}
+}
+
+xiaoli.callXiaoming('didi')
 		</script>
 	</head>
 	<body>
