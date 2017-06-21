@@ -4,9 +4,6 @@ var CommandInterface = new BH.Interface('CommandInterface', ['execute'])
 // 命令模式的主要概念
 
 
-
-
-
 // 闭包命令模式
 function makeStart() {
     return function() {
