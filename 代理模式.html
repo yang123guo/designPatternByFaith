@@ -10,6 +10,34 @@
 <script type="text/javascript">
     // 想象成买卖房子，中介在其中代理
     // 代理：就是帮助别人做事，
-    // 为对象提供一种代理 来控制对这个对象的访问权 代理可以从一大堆
+    // 为对象提供一种代理 来控制对这个对象的访问权 代理可以从一大堆资源中找出具体的某个对象（比如中介给你从房源中具体推荐一个）
+
+
+    // 代理模式 需要3方  买家  中介  房东
+
+    // 1 买家
+    function maijia(){
+        this.name = 'faith';
+    }
+
+    // 2 中介 （参与卖房）
+    function zhongjie() {
+
+    }
+    zhongjie.prototype.mai4fang = function() {
+        // 中介做事 卖房
+        new fangdong(new maijia()).mai4fang('20w')
+    }
+
+    // 3 房东 （只想卖房）
+    function fangdong(maijia) {
+        this.maijia_name = maijia.name;
+        this.mai4fang = function(price){
+            console.log('收到了来自:'+ this.maijia_name +'的￥'+ price)
+        }
+    }
+
+    (new zhongjie).mai4fang()  
+    // 这里房东只干了一件事 ：坐等收钱  其他的都是中介在做 
 </script>
 </html>
