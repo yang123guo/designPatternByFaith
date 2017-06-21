@@ -4,8 +4,10 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<script>
-//		最简单的字面量定义的属性和方法
-			var my={
+//  以对象字面量的形式直接引导调用，用函数的形式需要用return的形式返回出来
+
+//	最简单的字面量定义的属性和方法
+			var my = {
 				one:"faith",
 				two:"yang",
 				method:function(){
@@ -17,14 +19,15 @@
 
 
 		// 简单版单例模式
-		var Fun=function(){
+		var Fun = function(){
 			var name="yang",age=28,sex="male";
 			function priveteFun(){
-				alert();
+				console.log(this);  // Object {publicObj: "yang", publicFun: function}
 			}
 			
 			return {
 				publicFun:function(){
+					console.log(this) // window
 					priveteFun();
 				},
 				publicObj:name
@@ -130,7 +133,7 @@ var B = {
 		var _this = this;
 		_this.btnB = $('#a');
 	},
-	bind : function() {
+	bind : function() {         
 		var _this = this;
 		this.btnB.click(function(){
 			_this.test();
