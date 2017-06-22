@@ -8,6 +8,32 @@
     
 </body>
 <script type="text/javascript">
-    
+    // 定义：调用命令，用传令者 解耦 命令对象 和 接收对象，每个接收对象独立执行
+
+    var lian = {};
+    // 连队有炮兵和步兵随时待命
+    lian.paobing = function(pao_num) {
+        console.log(pao_num + '炮开始战斗')
+    }
+
+    lian.bubing = function(bu_num) {
+        console.log(bu_num + '人开始战斗')
+    }
+
+    lian.lianzhang = function(chuanling){
+        // 连长找到作战兵种，并制定作战人数
+        lian[chuanling.type](chuanling.num)
+    }
+
+    // 总司令向连长法令
+    lian.lianzhang({
+        type : 'paobing',
+        num : 100
+    })
+
+    lian.lianzhang({
+        type : 'bubing',
+        num : 2300
+    })
 </script>
 </html>
